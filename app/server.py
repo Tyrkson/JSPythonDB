@@ -21,5 +21,5 @@ def ax_25(item: ExternalMsg):
     return None
 
 @app.options("/")
-    def wtf():
-        return "Hello world"
+def wtf():
+    return "Hello world"
