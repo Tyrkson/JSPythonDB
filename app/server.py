@@ -19,3 +19,7 @@ def read_root():
 @app.post("/decode")
 def ax_25(item: ExternalMsg):
     return None
+
+@app.options("/")
+    def wtf():
+        return "Hello world"
