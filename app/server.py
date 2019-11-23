@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 import db
+import json
 
 app = FastAPI()
 
@@ -26,8 +27,8 @@ def read_root():
 
 @app.post("/addElement")
 def ax_25(item: Element):
-    return None
+    return db.addElement(item.name, item.element)
 
 @app.post("/get")
 def ax_25(item: CollectionName):
-    return None
+    return db.getCollection(item.name)
