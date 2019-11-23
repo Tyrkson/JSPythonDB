@@ -14,3 +14,12 @@ def createNewCollection(name):
 
 def addCollectionToList(coll):
     collections.append(coll)
+
+def testdb():
+    return "See olen mina!"
+
+def addElement(name, el):
+    return None #Returns success response when finished?
+
+def getCollection(name):
+    return None #Returns the collection's data

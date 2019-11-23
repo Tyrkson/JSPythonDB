@@ -1,25 +1,33 @@
-import fastapi
+from fastapi import FastAPI
 from pydantic import BaseModel
+from starlette.middleware.cors import CORSMiddleware
+import db
 
-app = fastapi.FastAPI()
+app = FastAPI()
 
-class ExternalMsg(BaseModel):
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class CollectionName(BaseModel):
     name: str
 
-
-def randomNumber(sat):
-    return sat + str(random.randint(0,9))
-
-
+class Element(BaseModel):
+    name: str
+    element: str
 
 @app.get("/")
 def read_root():
-    return "Hello world"
+    return db.testdb()
 
-@app.post("/decode")
-def ax_25(item: ExternalMsg):
+@app.post("/addElement")
+def ax_25(item: Element):
     return None
 
-@app.options("/")
-def wtf():
-    return "Hello world"
+@app.post("/get")
+def ax_25(item: CollectionName):
+    return None
