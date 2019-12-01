@@ -28,11 +28,34 @@ def addElement(name, el):
         createNewCollection(name)
     for coll in collections:
         if coll["name"] == name:
-            coll["data"].append(el)
+            coll["data"].append(json.loads(el))
             break
     print(collections)
     saveCollections()
     return True #Returns success response when finished?
+
+def getUser(email):
+    for coll in collections:
+        if coll['name'] == 'Users':
+            for i in coll['data']:
+                if i['email'] == email:
+                    return i
+    return False
+
+def checkUserCredentials(email, password):
+    user = getUser(email)
+    if user != False and user['password'] == password:
+        return True
+    else:
+        return False
+
+def updateUser(email):
+    return True
+
+def deleteCollections():
+    global collections
+    collections = []
+    return open('data.json', 'w').close()
 
 def getCollection(name):
     for coll in collections:

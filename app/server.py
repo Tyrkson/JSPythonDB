@@ -21,14 +21,33 @@ class Element(BaseModel):
     name: str
     element: str
 
+class User(BaseModel):
+    email: str
+
+class UserCredentials(BaseModel):
+    email: str
+    password: str
+
 @app.get("/")
 def read_root():
     return db.testdb()
 
+@app.get("/delete")
+def read_root():
+    return db.deleteCollections()
+
 @app.post("/addElement")
-def ax_25(item: Element):
+def addElement(item: Element):
     return db.addElement(item.name, item.element)
 
 @app.post("/get")
-def ax_25(item: CollectionName):
+def getC(item: CollectionName):
     return db.getCollection(item.name)
+
+@app.post("/getUser")
+def getUser(item: User):
+    return db.getUser(item.email)
+
+@app.post("/checkUser")
+def getUser(item: UserCredentials):
+    return db.checkUserCredentials(item.email, item.password)
